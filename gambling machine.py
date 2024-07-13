@@ -1,36 +1,42 @@
 import random
+
 starting_balance = 1000
 bet = 0
 current_balance = starting_balance
 play_again = True
 choices = ["yes","no"]
+
 def spinrow():
     symbols = ["🤑","😎","😡","🌟","🥶"]
     current_balance = starting_balance - bet
     return[random.choice(symbols) for i in range(3)]
 
 def checkwinner():
-    current_balance = starting_balance - bet
+    global current_balance
+    current_balance -= bet
     if spin[0] == spin[1] ==spin[2]:
         if spin[0] == '🤑':
-            return current_balance * 100
+            current_balance += bet * 100
             print("YOU WON!!!")
         if spin[0] == '😎':
-            return current_balance * 10
+            current_balance += bet * 10
             print("YOU WON!!!")
         if spin[0] == '😡':
-            return current_balance * 0.5
+            current_balance += bet * 0.5
             print("YOU LOST!!!")
         if spin[0] == '🌟':
-            return current_balance * 50
+            current_balance += bet * 50
             print("YOU WON!!!")
         if spin[0] == '🥶':
-            return current_balance * 25
+            current_balance += bet * 25
             print("YOU WON!!!")
+            
 def set_bet():
+    global bet
     bet = int(input("How much would you like to bet?$$$: "))
     return bet
 def try_again():
+    global play_again
     if current_balance <= 0:
         print("you lost everything you had😱")
         play_again = False
